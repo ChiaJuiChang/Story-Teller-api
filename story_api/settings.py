@@ -38,7 +38,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'apis',
+	'rest_framework',
 )
+
+REST_FRAMEWORK = {
+	'DEFAULT_PERMISSION_CLASSES': [
+		'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+	],
+	'PAGE_SIZE': 10
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,8 +85,11 @@ WSGI_APPLICATION = 'story_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+			'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+			'read_default_file': os.path.join(BASE_DIR, 'story_api/config/mysql.cnf'), 
+		}
     }
 }
 

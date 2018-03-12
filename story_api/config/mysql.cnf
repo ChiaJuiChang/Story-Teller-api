@@ -1,0 +1,6 @@
+[client]
+database = 'StoryTeller'
+host = '163.21.245.147'
+user = 'jack'
+password = 'jackjou0920'
+default-character-set = utf8
